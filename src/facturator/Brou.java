@@ -57,13 +57,7 @@ public class Brou {
                 Factura(factura) +
                 Aplica(linea) +
                 Importe(linea) +
-                Importe(linea) +
                 Retencion(linea));
-        return texto;
-    }
-    
-    String Aplica(String linea) {
-        String texto = "1";
         return texto;
     }
     
@@ -75,17 +69,23 @@ public class Brou {
         return texto;
     }
     
+    String Aplica(String linea) {
+        String texto = "1";
+        return texto;
+    }
+    
     String Importe(String linea) {
         String texto = "";
         int monto;
-        monto = Integer.parseInt(linea.substring(53, 68));
+        monto = Integer.parseInt(linea.substring(53, 65));
         //CALCULO EL IMPORTE SIN IVA
         monto /= 1.1;
         texto += (monto + "00");
         while (texto.length() < 15) {
             texto = "0" + texto;
         }
-        return texto;
+        //SE DEVUELVE DOS VECES EL TEXTO GENERADO
+        return texto + texto;
     }
     
     String Retencion(String linea) {

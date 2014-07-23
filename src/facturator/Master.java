@@ -22,12 +22,21 @@ public class Master {
                 try (FileReader fr = new FileReader(archivo)) {
                     BufferedReader br = new BufferedReader(fr);
                     //VERIFICO QUE NO ESTE MODIFICADO YA EL ARCHIVO
-                    if (br.readLine().length() < 80) {
-                        while ((linea = br.readLine()) != null) {
+                    if (true) {
+                        //COMPLETO LOS 200 CARACTERES DEL HEADER
+                        linea = br.readLine();
+                        while (linea.length() < 200) {
+                            linea += " ";
+                        }
+                        linea += "\n";
+                        texto = linea;
+                        //COMPLETO LOS DETALLES
+                        while ((linea = br.readLine()) != null) {    
                             //RECUPERO EL NUMERO DE FACTURA ACTUAL
                             num = Integer.parseInt(ini) + cant;
+                            //QUITO LOS ESPACIOS SOBRANTES
+                            linea = linea.substring(0, 108);
                             texto += (linea + Extra(linea, num) + "\n");
-                            cant ++;
                         }
                         br.close();
                         
@@ -54,14 +63,14 @@ public class Master {
         String texto = "";
         //AGREGO IMPORTE SIN IVA
         texto += (
-                Aplica(linea) +
-                Factura(factura) +
+                Aplica() +
                 Importe(linea) +
-                Retencion(linea));
+                Factura(factura) + 
+                Filler());
         return texto;
     }
     
-    String Aplica(String linea) {
+    String Aplica() {
         String texto = "1";
         return texto;
     }
@@ -77,18 +86,21 @@ public class Master {
     String Importe(String linea) {
         String texto = "";
         int monto;
-        monto = Integer.parseInt(linea.substring(linea.length() - 10, linea.length() - 2));
+        monto = Integer.parseInt(linea.substring(46, 54));
         //CALCULO MONTO SIN IVA
         monto /= 1.1;
         texto += (monto + "00");
-        while (texto.length() < 9) {
+        while (texto.length() < 11) {
             texto = "0" + texto;
         }
         return texto;
     }
     
-    String Retencion(String linea) {
-        String texto = "000000000";
+    String Filler() {
+        String texto = "";
+        while (texto.length() < 60) {
+            texto += " ";
+        }
         return texto;
     }
 }

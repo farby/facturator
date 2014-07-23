@@ -22,7 +22,7 @@ public class Bbva {
                 try (FileReader fr = new FileReader(archivo)) {
                     BufferedReader br = new BufferedReader(fr);
                     //VERIFICO QUE NO ESTE MODIFICADO YA EL ARCHIVO
-                    if (br.readLine().length() < 130) {
+                    if (br.readLine().length() < 60) {
                         while ((linea = br.readLine()) != null) {
                             //RECUPERO EL NUMERO DE FACTURA ACTUAL
                             num = Integer.parseInt(ini) + cant;

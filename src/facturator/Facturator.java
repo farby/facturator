@@ -11,27 +11,26 @@ public class Facturator extends javax.swing.JFrame {
     private void initComponents() {
 
         fcr = new javax.swing.JFileChooser();
-        btnMaster = new javax.swing.JButton();
-        btnVisa = new javax.swing.JButton();
-        btnOca = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
-        msg = new javax.swing.JLabel();
-        txtFactura = new javax.swing.JSpinner();
         lblFactura = new javax.swing.JLabel();
+        txtFactura = new javax.swing.JSpinner();
         lblEmisor = new javax.swing.JLabel();
+        btnOca = new javax.swing.JButton();
+        btnVisa = new javax.swing.JButton();
+        btnMaster = new javax.swing.JButton();
         btnBrou = new javax.swing.JButton();
         btnBbva = new javax.swing.JButton();
+        msg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnMaster.setText("MASTER");
-        btnMaster.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterActionPerformed(evt);
-            }
-        });
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("FACTURATOR");
 
-        btnVisa.setText("VISA");
+        lblFactura.setText("Nº Inicial de Factura");
+
+        lblEmisor.setText("Seleccione tarjeta / banco");
 
         btnOca.setText("OCA");
         btnOca.addActionListener(new java.awt.event.ActionListener() {
@@ -40,18 +39,14 @@ public class Facturator extends javax.swing.JFrame {
             }
         });
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("FACTURATOR");
+        btnVisa.setText("VISA");
 
-        msg.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        msg.setForeground(new java.awt.Color(255, 0, 0));
-        msg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        msg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblFactura.setText("Nº Inicial de Factura");
-
-        lblEmisor.setText("Seleccione tarjeta / banco");
+        btnMaster.setText("MASTER");
+        btnMaster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasterActionPerformed(evt);
+            }
+        });
 
         btnBrou.setText("BROU");
         btnBrou.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +61,11 @@ public class Facturator extends javax.swing.JFrame {
                 btnBbvaActionPerformed(evt);
             }
         });
+
+        msg.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        msg.setForeground(new java.awt.Color(255, 0, 0));
+        msg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        msg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
