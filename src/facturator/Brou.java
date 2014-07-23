@@ -69,7 +69,7 @@ public class Brou {
     
     String Factura(int factura) {
         String texto = String.valueOf(factura);       
-        while (texto.length() < 13) {
+        while (texto.length() < 12) {
             texto = "0" + texto;
         }
         return texto;
@@ -82,7 +82,7 @@ public class Brou {
         //CALCULO EL IMPORTE SIN IVA
         monto /= 1.1;
         texto += (monto + "00");
-        while (texto.length() < 16) {
+        while (texto.length() < 15) {
             texto = "0" + texto;
         }
         return texto;
