@@ -51,7 +51,7 @@ public class Facturator extends javax.swing.JFrame {
 
         lblFactura.setText("Nº Inicial de Factura");
 
-        lblEmisor.setText("Seleccione tarjeta");
+        lblEmisor.setText("Seleccione tarjeta / banco");
 
         btnBrou.setText("BROU");
         btnBrou.addActionListener(new java.awt.event.ActionListener() {
@@ -81,12 +81,14 @@ public class Facturator extends javax.swing.JFrame {
                     .addComponent(txtFactura, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblFactura)
                             .addComponent(lblEmisor))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(btnBrou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBbva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnBbva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,9 +112,9 @@ public class Facturator extends javax.swing.JFrame {
                 .addComponent(btnBrou)
                 .addGap(18, 18, 18)
                 .addComponent(btnBbva)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

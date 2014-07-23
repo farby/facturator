@@ -89,7 +89,7 @@ public class Bbva {
     String Importe(String linea) {
         String texto = "";
         int monto;
-        monto = Integer.parseInt(linea.substring(33, 43));
+        monto = Integer.parseInt(linea.substring(33, 41));
         //CALCULO EL IMPORTE SIN IVA
         monto /= 1.1;
         texto += (monto + "00");
