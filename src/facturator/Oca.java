@@ -19,26 +19,22 @@ public class Oca {
             fcr.showOpenDialog(fcr);
             File archivo = fcr.getSelectedFile();
             if (archivo != null) {
+                /***LEO EL ARCHIVO***/
                 try (FileReader fr = new FileReader(archivo)) {
                     BufferedReader br = new BufferedReader(fr);
                     //VERIFICO QUE NO ESTE MODIFICADO YA EL ARCHIVO
-                    if (br.readLine().length() < 80) {
-                        while ((linea = br.readLine()) != null) {
-                            //RECUPERO EL NUMERO DE FACTURA ACTUAL
-                            num = Integer.parseInt(ini) + cant;
-                            texto += (linea + Extra(linea, num) + "\n");
-                            cant ++;
-                        }
-                        br.close();
-                        
-                        try (FileWriter fw = new FileWriter(archivo)) {
-                            fw.write(texto);
-                        }
-                        mensaje = "OCA - Generado correctamente.";
+                    while ((linea = br.readLine()) != null) {
+                        //RECUPERO EL NUMERO DE FACTURA ACTUAL
+                        num = Integer.parseInt(ini) + cant;
+                        texto += (linea + Extra(linea, num) + "\n");
+                        cant ++;
                     }
-                    else {
-                        mensaje = "OCA - Origen incorrecto.";
+                    br.close();
+                    /***ESCRIBO EL ARCHIVO***/
+                    try (FileWriter fw = new FileWriter(archivo)) {
+                        fw.write(texto);
                     }
+                    mensaje = "OCA - Generado correctamente.";
                 }
             }
         }
@@ -54,10 +50,10 @@ public class Oca {
         String texto = "";
         //AGREGO IMPORTE SIN IVA
         texto += (
-                Aplica(linea) +
-                Factura(factura) +
-                Importe(linea) +
-                Retencion(linea));
+            Aplica(linea) +
+            Factura(factura) +
+            Importe(linea) +
+            Retencion(linea));
         return texto;
     }
     

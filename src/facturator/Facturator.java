@@ -1,5 +1,7 @@
 package facturator;
 
+import javax.swing.text.MaskFormatter;
+
 public class Facturator extends javax.swing.JFrame {
 
     public Facturator() {
@@ -21,6 +23,9 @@ public class Facturator extends javax.swing.JFrame {
         btnBrou = new javax.swing.JButton();
         btnBbva = new javax.swing.JButton();
         msg = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JFormattedTextField();
+        btnOK = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -29,6 +34,8 @@ public class Facturator extends javax.swing.JFrame {
         lblTitulo.setText("FACTURATOR");
 
         lblFactura.setText("Nº Inicial de Factura");
+
+        txtFactura.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblEmisor.setText("Seleccione tarjeta / banco");
 
@@ -67,6 +74,14 @@ public class Facturator extends javax.swing.JFrame {
         msg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         msg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        txtFecha.setText("  /  /    ");
+        txtFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        btnOK.setText("OK");
+
+        jLabel1.setText("Ingrese la fecha de las facturas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,16 +94,18 @@ public class Facturator extends javax.swing.JFrame {
                     .addComponent(btnVisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMaster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtFactura, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFactura)
-                            .addComponent(lblEmisor))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(btnBrou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBbva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtFecha)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnOK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblFactura)
+                    .addComponent(lblEmisor)
+                    .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(40, 40, 40)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -103,19 +120,27 @@ public class Facturator extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblEmisor)
                 .addGap(18, 18, 18)
-                .addComponent(btnOca)
+                .addComponent(btnOca, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnVisa)
+                .addComponent(btnVisa, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnMaster)
+                .addComponent(btnMaster, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBrou)
+                .addComponent(btnBrou, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBbva)
+                .addComponent(btnBbva, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOK))
                 .addGap(18, 18, 18)
                 .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnOK, txtFecha});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -127,8 +152,7 @@ public class Facturator extends javax.swing.JFrame {
 
     private void btnMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterActionPerformed
         Master master = new Master();
-        master.GenerarMaster(fcr, msg, txtFactura.getValue().toString());
-        
+        master.GenerarMaster(fcr, msg, txtFactura.getValue().toString());  
     }//GEN-LAST:event_btnMasterActionPerformed
 
     private void btnBrouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrouActionPerformed
@@ -180,13 +204,16 @@ public class Facturator extends javax.swing.JFrame {
     private javax.swing.JButton btnBbva;
     private javax.swing.JButton btnBrou;
     private javax.swing.JButton btnMaster;
+    private javax.swing.JButton btnOK;
     private javax.swing.JButton btnOca;
     private javax.swing.JButton btnVisa;
     private javax.swing.JFileChooser fcr;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblEmisor;
     private javax.swing.JLabel lblFactura;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel msg;
     private javax.swing.JSpinner txtFactura;
+    private javax.swing.JFormattedTextField txtFecha;
     // End of variables declaration//GEN-END:variables
 }

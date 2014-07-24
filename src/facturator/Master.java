@@ -12,42 +12,37 @@ public class Master {
     public void GenerarMaster(JFileChooser fcr, JLabel msg, String ini) {
         String linea = "";
         String texto = "";
-        String mensaje = "";
+        String mensaje = "ERROR";
         int num = 0;
         int cant = 0;
         try {
             fcr.showOpenDialog(fcr);
             File archivo = fcr.getSelectedFile();
             if (archivo != null) {
+                /***LEO EL ARCHIVO***/
                 try (FileReader fr = new FileReader(archivo)) {
                     BufferedReader br = new BufferedReader(fr);
-                    //VERIFICO QUE NO ESTE MODIFICADO YA EL ARCHIVO
-                    if (true) {
-                        //COMPLETO LOS 200 CARACTERES DEL HEADER
-                        linea = br.readLine();
-                        while (linea.length() < 200) {
-                            linea += " ";
-                        }
-                        linea += "\n";
-                        texto = linea;
-                        //COMPLETO LOS DETALLES
-                        while ((linea = br.readLine()) != null) {    
-                            //RECUPERO EL NUMERO DE FACTURA ACTUAL
-                            num = Integer.parseInt(ini) + cant;
-                            //QUITO LOS ESPACIOS SOBRANTES
-                            linea = linea.substring(0, 108);
-                            texto += (linea + Extra(linea, num) + "\n");
-                        }
-                        br.close();
-                        
-                        try (FileWriter fw = new FileWriter(archivo)) {
-                            fw.write(texto);
-                        }
-                        mensaje = "MASTER - Generado correctamente.";
+                    //COMPLETO LOS 200 CARACTERES DEL HEADER
+                    linea = br.readLine();
+                    while (linea.length() < 200) {
+                        linea += " ";
                     }
-                    else {
-                        mensaje = "MASTER - Origen incorrecto.";
+                    linea += "\n";
+                    texto = linea;
+                    //COMPLETO LOS DETALLES
+                    while ((linea = br.readLine()) != null) {    
+                        //RECUPERO EL NUMERO DE FACTURA ACTUAL
+                        num = Integer.parseInt(ini) + cant;
+                        //QUITO LOS ESPACIOS SOBRANTES
+                        linea = linea.substring(0, 108);
+                        texto += (linea + Extra(linea, num) + "\n");
                     }
+                    br.close();
+                    /***ESCRIBO EL ARCHIVO***/
+                    try (FileWriter fw = new FileWriter(archivo)) {
+                        fw.write(texto);
+                    }
+                    mensaje = "MASTER - Generado correctamente.";
                 }
             }
         }

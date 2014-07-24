@@ -12,33 +12,29 @@ public class Brou {
     public void GenerarBrou(JFileChooser fcr, JLabel msg, String ini) {
         String linea = "";
         String texto = "";
-        String mensaje = "";
+        String mensaje = "ERROR";
         int num = 0;
         int cant = 0;
         try {
             fcr.showOpenDialog(fcr);
             File archivo = fcr.getSelectedFile();
             if (archivo != null) {
+                /***LEO EL ARCHIVO***/
                 try (FileReader fr = new FileReader(archivo)) {
                     BufferedReader br = new BufferedReader(fr);
                     //VERIFICO QUE NO ESTE MODIFICADO YA EL ARCHIVO
-                    if (br.readLine().length() < 130) {
-                        while ((linea = br.readLine()) != null) {
-                            //RECUPERO EL NUMERO DE FACTURA ACTUAL
-                            num = Integer.parseInt(ini) + cant;
-                            texto += (linea + Extra(linea, num) + "\n");
-                            cant ++;
-                        }
-                        br.close();
-                        
-                        try (FileWriter fw = new FileWriter(archivo)) {
-                            fw.write(texto);
-                        }
-                        mensaje = "BROU - Generado correctamente.";
+                    while ((linea = br.readLine()) != null) {
+                        //RECUPERO EL NUMERO DE FACTURA ACTUAL
+                        num = Integer.parseInt(ini) + cant;
+                        texto += (linea + Extra(linea, num) + "\n");
+                        cant ++;
                     }
-                    else {
-                        mensaje = "BROU - Origen incorrecto.";
+                    br.close();
+                    /***ESCRIBO EL ARCHIVO***/
+                    try (FileWriter fw = new FileWriter(archivo)) {
+                        fw.write(texto);
                     }
+                    mensaje = "BROU - Generado correctamente.";
                 }
             }
         }
